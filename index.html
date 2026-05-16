@@ -167,7 +167,45 @@ nav a.active{
         .card p{
             color:gray;
         }
+.tag{
+    display:inline-block;
 
+    background:#232336;
+
+    color:#bdbdc7;
+
+    padding:6px 12px;
+
+    border-radius:20px;
+
+    font-size:12px;
+
+    margin-bottom:15px;
+}
+
+.tech-stack{
+    margin-top:20px;
+
+    display:flex;
+
+    gap:10px;
+
+    flex-wrap:wrap;
+}
+
+.tech-stack span{
+    background:#1f1f2e;
+
+    border:1px solid #2f2f45;
+
+    padding:6px 12px;
+
+    border-radius:8px;
+
+    font-size:13px;
+
+    color:#cfcfe6;
+}
     </style>
 </head>
 
@@ -223,24 +261,42 @@ nav a.active{
 <div class="project-grid">
 
     <div class="card">
+
+        <span class="tag">Discord Bot</span>
+
         <h3>Niveus</h3>
 
         <p>
             Multi-functional Discord bot focused on supervision,
             moderation, automation, and music systems.
         </p>
+
+        <div class="tech-stack">
+            <span>Node.js</span>
+            <span>Discord.js</span>
+        </div>
+
     </div>
 
     <div class="card">
+
+        <span class="tag">Web Development</span>
+
         <h3>Web Projects</h3>
 
         <p>
-            Currently studying HTML, CSS.
+            Currently studying HTML and CSS while building
+            frontend development experience.
         </p>
+
+        <div class="tech-stack">
+            <span>HTML</span>
+            <span>CSS</span>
+        </div>
+
     </div>
 
 </div>
-
     </section>
 
 </body>
