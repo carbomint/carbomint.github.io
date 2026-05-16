@@ -28,8 +28,9 @@
 }
 
 .status-card-label svg {
-    color: inherit;
-    opacity: 0.7;
+    color: #5865f2;
+    opacity: 1;
+    filter: drop-shadow(0 0 4px rgba(88, 101, 242, 0.4));
 }
 
 /* Loading State */
@@ -101,11 +102,21 @@
 
 .discord-dot {
     display: inline-block;
-    width: 8px;
-    height: 8px;
+    width: 10px;
+    height: 10px;
     border-radius: 50%;
     background: #747f8d;
     flex-shrink: 0;
+}
+
+.discord-dot.online  { background: #43b581; }
+.discord-dot.dnd     { background: #f04747; }
+.discord-dot.offline { background: #747f8d; }
+
+/* Idle = crescent moon */
+.discord-dot.idle {
+    background: transparent;
+    box-shadow: inset -2px -1px 0 2px #faa61a;
 }
 
 .discord-status-text {
