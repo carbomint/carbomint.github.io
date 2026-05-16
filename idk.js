@@ -60,7 +60,16 @@ async function loadDiscord() {
     const csTx = document.getElementById('discordCustomText');
     if (cs && csEl && csTx && (cs.state || cs.emoji?.name)) {
       csEl.style.display = 'block';
-      csTx.textContent = (cs.emoji?.name ? cs.emoji.name + ' ' : '') + (cs.state || '');
+      let emojiHtml = '';
+      if (cs.emoji) {
+        if (cs.emoji.id) {
+          const ext = cs.emoji.animated ? 'gif' : 'png';
+          emojiHtml = `<img src="https://cdn.discordapp.com/emojis/${cs.emoji.id}.${ext}?size=20" style="width:18px;height:18px;vertical-align:middle;margin-right:5px;" alt="${cs.emoji.name}">`;
+        } else {
+          emojiHtml = `<span style="margin-right:4px">${cs.emoji.name}</span>`;
+        }
+      }
+      csTx.innerHTML = emojiHtml + (cs.state || '');
     }
   } catch (err) {
     console.warn('[discord]', err.message);
