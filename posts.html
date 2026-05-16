@@ -6,78 +6,90 @@
     <title>Posts | carbomint</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
     <style>
+        :root { --bg: #0a0a0c; --text-dim: #666; --border: rgba(255, 255, 255, 0.03); }
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
-            background: linear-gradient(rgba(10, 10, 12, 0.92), rgba(10, 10, 12, 0.98)), 
+            background: linear-gradient(rgba(10, 10, 12, 0.95), rgba(10, 10, 12, 0.98)), 
                         url('https://i.pinimg.com/736x/d7/57/ff/d757ff47f222c04d880ae5f57d6507f2.jpg');
             background-size: cover; background-position: center; background-attachment: fixed;
             color: #e0e0e6; font-family: 'Inter', sans-serif; line-height: 1.6;
         }
-
         nav {
-            display: flex; justify-content: center; align-items: center; padding: 25px;
+            display: flex; justify-content: center; padding: 25px;
             background: rgba(10, 10, 12, 0.7); backdrop-filter: blur(20px);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.03); position: sticky; top: 0; z-index: 1000;
+            border-bottom: 1px solid var(--border); position: sticky; top: 0; z-index: 1000;
         }
-        .logo { position: absolute; left: 50px; font-weight: 700; font-size: 1.1rem; color: #fff; }
-        nav ul { display: flex; list-style: none; gap: 40px; }
-        nav a { color: #888; text-decoration: none; font-size: 13px; text-transform: uppercase; letter-spacing: 1px; transition: 0.3s; }
+        nav ul { display: flex; gap: 40px; list-style: none; }
+        nav a { color: #555; text-decoration: none; font-size: 12px; text-transform: uppercase; letter-spacing: 2px; }
         nav a.active { color: #fff; }
 
-        .container { max-width: 800px; margin: 0 auto; padding: 80px 20px; }
-        header { margin-bottom: 60px; }
-        header h1 { font-size: 2.5rem; font-weight: 800; color: #fff; }
-        .subtitle { color: #444; text-transform: uppercase; letter-spacing: 3px; font-size: 0.75rem; font-weight: 700; margin-bottom: 10px; }
+        .container { max-width: 800px; margin: 0 auto; padding: 100px 20px; }
+        h1 { font-size: 2.5rem; font-weight: 800; color: #fff; margin-bottom: 60px; letter-spacing: -1.5px; }
 
-        /* Post Item (Old Version Grid) */
         .post-item {
-            display: grid; grid-template-columns: 120px 1fr; padding: 30px 0;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.03); text-decoration: none; transition: 0.3s;
+            display: grid; grid-template-columns: 120px 1fr; padding: 40px 0;
+            border-bottom: 1px solid var(--border); text-decoration: none; transition: 0.3s;
         }
-        .post-item:hover { transform: translateX(10px); }
-        .post-date { font-family: 'Fira Code', monospace; font-size: 0.85rem; color: #444; padding-top: 5px; }
-        .post-content h2 { font-size: 1.4rem; color: #fff; margin-bottom: 8px; font-weight: 600; }
+        .post-item:hover { transform: translateX(10px); background: rgba(255,255,255,0.01); }
+        .post-date { font-family: 'Fira Code', monospace; font-size: 13px; color: #333; }
+        .post-content h2 { color: #fff; font-size: 1.3rem; margin-bottom: 8px; }
         .post-content p { color: #777; font-size: 0.95rem; }
 
-        footer { padding: 60px 20px; text-align: center; border-top: 1px solid rgba(255, 255, 255, 0.02); margin-top: 100px; }
-        .footer-links { display: flex; justify-content: center; gap: 30px; margin-bottom: 20px; }
-        .footer-links a { color: #555; text-decoration: none; font-size: 12px; text-transform: uppercase; letter-spacing: 2px; transition: 0.3s; }
-        .footer-links a:hover { color: #fff; }
-        .copyright { font-size: 11px; color: #333; font-family: 'Fira Code', monospace; }
+        /* Enhanced Social Footer */
+        .connect-box { margin-top: 150px; text-align: center; border-top: 1px solid #111; padding-top: 80px; }
+        .social-row { display: flex; justify-content: center; gap: 15px; margin-top: 30px; }
+        .s-link {
+            background: rgba(255,255,255,0.03); border: 1px solid var(--border);
+            padding: 15px 30px; color: #888; text-decoration: none; font-family: 'Fira Code', monospace;
+            font-size: 12px; border-radius: 4px; transition: 0.3s;
+        }
+        .s-link:hover { background: #fff; color: #000; }
 
-        @media (max-width: 600px) { .post-item { grid-template-columns: 1fr; } }
+        footer { margin-top: 100px; padding: 40px; background: #050505; text-align: center; border-top: 1px solid #111; }
+        .status { font-family: 'Fira Code', monospace; font-size: 10px; color: #222; margin-top: 15px; }
     </style>
 </head>
 <body>
     <nav>
-        <div class="logo">carbomint</div>
         <ul>
             <li><a href="index.html">Home</a></li>
             <li><a href="portfolio.html">Portfolio</a></li>
             <li><a href="posts.html" class="active">Posts</a></li>
         </ul>
     </nav>
+
     <div class="container">
-        <header>
-            <p class="subtitle">Technical Logs</p>
-            <h1>Dev Thoughts</h1>
-        </header>
-        <div class="post-list">
-            <a href="#" class="post-item">
-                <div class="post-date">2024.05.16</div>
-                <div class="post-content">
-                    <h2>Scaling Discord Bots</h2>
-                    <p>Lessons learned while optimizing shard management and PostgreSQL connection pooling.</p>
-                </div>
-            </a>
+        <h1>Developer Logs</h1>
+        
+        <a href="#" class="post-item">
+            <div class="post-date">2024.05.16</div>
+            <div class="post-content">
+                <h2>Scaling Discord Bots</h2>
+                <p>Analyzing memory leaks and PostgreSQL connection pooling during Niveus deployment.</p>
+            </div>
+        </a>
+
+        <a href="#" class="post-item">
+            <div class="post-date">2024.04.28</div>
+            <div class="post-content">
+                <h2>Monochrome Design Systems</h2>
+                <p>Why high-contrast black and white layouts improve focus in technical environments.</p>
+            </div>
+        </a>
+
+        <div class="connect-box">
+            <span style="font-size: 11px; color: #333; letter-spacing: 5px; text-transform: uppercase;">Establish Connection</span>
+            <div class="social-row">
+                <a href="https://github.com/carbomint" class="s-link">GITHUB</a>
+                <a href="https://discord.com/users/920842715351113728" class="s-link">DISCORD</a>
+                <a href="https://x.com/carbomint" class="s-link">X_TWITTER</a>
+            </div>
         </div>
     </div>
+
     <footer>
-        <div class="footer-links">
-            <a href="https://github.com/carbomint">GitHub</a>
-            <a href="https://discord.com/users/920842715351113728">Discord</a>
-        </div>
-        <div class="copyright">© 2024 CARBOMINT // SYSTEM_STATUS: OPERATIONAL</div>
+        <div style="font-size: 11px; color: #444;">© 2024 CARBOMINT // ARCHIVE_V1.0</div>
+        <div class="status">SYSTEM_STATUS: OPERATIONAL // DATA_ENCRYPTION: ACTIVE</div>
     </footer>
 </body>
 </html>
