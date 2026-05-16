@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>carbomint Portfolio</title>
-
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700&display=swap" rel="stylesheet">
     <style>
 
         *{
@@ -13,11 +13,37 @@
             padding:0;
             box-sizing:border-box;
         }
+.blur-circle{
+    position:fixed;
 
+    width:500px;
+    height:500px;
+
+    background:rgba(255,0,80,0.18);
+
+    border-radius:50%;
+
+    filter:blur(120px);
+
+    top:-120px;
+    right:-120px;
+
+    z-index:-1;
+}
         body{
-            background:#0d0d0d;
+            background:
+linear-gradient(
+rgba(0,0,0,0.75),
+rgba(0,0,0,0.85)
+),
+
+url("https://images.unsplash.com/photo-1511512578047-dfb367046420?q=80&w=1920");
+
+background-size:cover;
+background-position:center;
+background-attachment:fixed;
             color:white;
-            font-family:Arial, sans-serif;
+            font-family:'Inter', sans-serif;
         }
 
         nav{
@@ -73,9 +99,11 @@ nav a.active{
 
     text-align:center;
 
-    height:85vh;
+    min-height:100vh;
 
     padding:20px;
+
+    position:relative;
 }
 
 .small-text{
@@ -91,9 +119,17 @@ nav a.active{
 }
 
 .hero h1{
-    font-size:90px;
+    font-size:110px;
 
     margin-bottom:20px;
+
+    font-weight:700;
+
+    letter-spacing:2px;
+
+    text-shadow:
+    0 0 10px rgba(255,255,255,0.15),
+    0 0 25px rgba(255,255,255,0.08);
 }
 
 .description{
@@ -153,13 +189,15 @@ nav a.active{
         }
 
         .card{
-    background:#161622;
+    background:rgba(20,20,30,0.55);
 
-    border:1px solid #25253a;
+    border:1px solid rgba(255,255,255,0.08);
+
+    backdrop-filter:blur(12px);
 
     padding:25px;
 
-    border-radius:16px;
+    border-radius:18px;
 
     transition:0.25s;
 
@@ -260,7 +298,7 @@ nav a.active{
         <li><a href="#">Portfolio</a></li>
         <li><a href="#">Posts</a></li>
     </ul>
-
+<div class="blur-circle"></div>
 </nav>
 
     <section class="hero">
