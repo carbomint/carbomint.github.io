@@ -33,3 +33,4 @@
     if (!open) warned = false;
   }
   setInterval(checkDevTools, 1000);
+})();
