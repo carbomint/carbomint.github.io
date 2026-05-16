@@ -6,180 +6,51 @@
     <title>Posts | carbomint</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
+        :root { --bg: #0a0a0c; --text-dim: #666; --border: rgba(255, 255, 255, 0.03); }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
-            background: 
-                linear-gradient(rgba(10, 10, 12, 0.92), rgba(10, 10, 12, 0.98)),
-                url('https://i.pinimg.com/736x/d7/57/ff/d757ff47f222c04d880ae5f57d6507f2.jpg');
-            background-size: cover;
-            background-position: center;
-            background-attachment: fixed;
-            color: #e0e0e6;
-            font-family: 'Inter', sans-serif;
-            line-height: 1.6;
+            background: linear-gradient(rgba(10, 10, 12, 0.95), rgba(10, 10, 12, 0.98)), 
+                        url('https://i.pinimg.com/736x/d7/57/ff/d757ff47f222c04d880ae5f57d6507f2.jpg');
+            background-size: cover; background-position: center; background-attachment: fixed;
+            color: #e0e0e6; font-family: 'Inter', sans-serif; line-height: 1.6;
         }
-
         nav {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            padding: 25px;
-            background: rgba(10, 10, 12, 0.7);
-            backdrop-filter: blur(20px);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.03);
-            position: sticky;
-            top: 0;
-            z-index: 1000;
+            display: flex; justify-content: center; padding: 25px;
+            background: rgba(10, 10, 12, 0.7); backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border); position: sticky; top: 0; z-index: 1000;
         }
-
-        .logo {
-            position: absolute;
-            left: 50px;
-            font-weight: 700;
-            letter-spacing: -1px;
-            font-size: 1.1rem;
-            color: #fff;
-        }
-
-        nav ul {
-            display: flex;
-            list-style: none;
-            gap: 40px;
-        }
-
-        nav a {
-            color: #888;
-            text-decoration: none;
-            font-size: 13px;
-            font-weight: 500;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
+        nav ul { display: flex; gap: 40px; list-style: none; }
+        nav a { color: #555; text-decoration: none; font-size: 12px; text-transform: uppercase; letter-spacing: 2px; }
         nav a.active { color: #fff; }
 
-        .container {
-            max-width: 800px; /* Thinner for blog readability */
-            margin: 0 auto;
-            padding: 80px 20px;
-        }
-
-        header {
-            margin-bottom: 60px;
-        }
-
-        header h1 {
-            font-size: 2.5rem;
-            font-weight: 800;
-            letter-spacing: -1.5px;
-            color: #fff;
-            margin-bottom: 10px;
-        }
-
-        .subtitle {
-            color: #444;
-            text-transform: uppercase;
-            letter-spacing: 3px;
-            font-size: 0.75rem;
-            font-weight: 700;
-        }
-
-        /* Post List Layout */
-        .post-list {
-            display: flex;
-            flex-direction: column;
-            gap: 2px; /* Small gap for a list feel */
-        }
+        .container { max-width: 800px; margin: 0 auto; padding: 100px 20px; }
+        h1 { font-size: 2.5rem; font-weight: 800; color: #fff; margin-bottom: 60px; letter-spacing: -1.5px; }
 
         .post-item {
-            display: grid;
-            grid-template-columns: 120px 1fr;
-            padding: 30px 0;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.03);
-            text-decoration: none;
-            transition: all 0.3s ease;
+            display: grid; grid-template-columns: 120px 1fr; padding: 40px 0;
+            border-bottom: 1px solid var(--border); text-decoration: none; transition: 0.3s;
         }
+        .post-item:hover { transform: translateX(10px); background: rgba(255,255,255,0.01); }
+        .post-date { font-family: 'Fira Code', monospace; font-size: 13px; color: #333; }
+        .post-content h2 { color: #fff; font-size: 1.3rem; margin-bottom: 8px; }
+        .post-content p { color: #777; font-size: 0.95rem; }
 
-        .post-item:hover {
-            transform: translateX(10px);
+        /* Enhanced Social Footer */
+        .connect-box { margin-top: 150px; text-align: center; border-top: 1px solid #111; padding-top: 80px; }
+        .social-row { display: flex; justify-content: center; gap: 15px; margin-top: 30px; }
+        .s-link {
+            background: rgba(255,255,255,0.03); border: 1px solid var(--border);
+            padding: 15px 30px; color: #888; text-decoration: none; font-family: 'Fira Code', monospace;
+            font-size: 12px; border-radius: 4px; transition: 0.3s;
         }
+        .s-link:hover { background: #fff; color: #000; }
 
-        .post-date {
-            font-family: 'Fira Code', monospace;
-            font-size: 0.85rem;
-            color: #444;
-            padding-top: 5px;
-        }
-
-        .post-content h2 {
-            font-size: 1.4rem;
-            color: #fff;
-            margin-bottom: 8px;
-            font-weight: 600;
-            transition: color 0.3s;
-        }
-
-        .post-item:hover .post-content h2 {
-            color: #fff;
-            text-shadow: 0 0 15px rgba(255,255,255,0.2);
-        }
-
-        .post-content p {
-            color: #777;
-            font-size: 0.95rem;
-            max-width: 600px;
-        }
-
-        .post-tags {
-            margin-top: 12px;
-            display: flex;
-            gap: 15px;
-        }
-
-        .post-tags span {
-            font-size: 11px;
-            color: #444;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        /* Pagination or Footer */
-        .archive-footer {
-            margin-top: 80px;
-            padding-top: 40px;
-            border-top: 1px solid #222;
-            text-align: center;
-        }
-
-        .archive-footer a {
-            color: #444;
-            font-size: 0.8rem;
-            text-decoration: none;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            transition: 0.3s;
-        }
-
-        .archive-footer a:hover {
-            color: #888;
-        }
-
-        @media (max-width: 600px) {
-            .post-item { grid-template-columns: 1fr; gap: 10px; }
-            .logo { position: static; margin-bottom: 20px; }
-            nav { flex-direction: column; }
-        }
+        footer { margin-top: 100px; padding: 40px; background: #050505; text-align: center; border-top: 1px solid #111; }
+        .status { font-family: 'Fira Code', monospace; font-size: 10px; color: #222; margin-top: 15px; }
     </style>
 </head>
 <body>
-
     <nav>
-        <div class="logo">carbomint</div>
         <ul>
             <li><a href="index.html">Home</a></li>
             <li><a href="portfolio.html">Portfolio</a></li>
@@ -188,100 +59,37 @@
     </nav>
 
     <div class="container">
-        <header>
-            <p class="subtitle">Personal Journal / Technical Logs</p>
-            <h1>Dev Thoughts</h1>
-        </header>
+        <h1>Developer Logs</h1>
+        
+        <a href="#" class="post-item">
+            <div class="post-date">2024.05.16</div>
+            <div class="post-content">
+                <h2>Scaling Discord Bots</h2>
+                <p>Analyzing memory leaks and PostgreSQL connection pooling during Niveus deployment.</p>
+            </div>
+        </a>
 
-        <div class="post-list">
-            
-            <a href="#" class="post-item">
-                <div class="post-date">2024.05.16</div>
-                <div class="post-content">
-                    <h2>Scaling Discord Bots</h2>
-                    <p>Lessons learned while optimizing shard management and PostgreSQL connection pooling for Niveus.</p>
-                    <div class="post-tags">
-                        <span>#Backend</span>
-                        <span>#Optimization</span>
-                    </div>
-                </div>
-            </a>
+        <a href="#" class="post-item">
+            <div class="post-date">2024.04.28</div>
+            <div class="post-content">
+                <h2>Monochrome Design Systems</h2>
+                <p>Why high-contrast black and white layouts improve focus in technical environments.</p>
+            </div>
+        </a>
 
-            <a href="#" class="post-item">
-                <div class="post-date">2024.04.28</div>
-                <div class="post-content">
-                    <h2>The Aesthetic of Minimalist Code</h2>
-                    <p>Why I chose a monochrome manga theme for my digital space and how it reflects my programming philosophy.</p>
-                    <div class="post-tags">
-                        <span>#Design</span>
-                        <span>#Identity</span>
-                    </div>
-                </div>
-            </a>
-
-            <a href="#" class="post-item">
-                <div class="post-date">2024.03.12</div>
-                <div class="post-content">
-                    <h2>AsyncIO Pitfalls in Python</h2>
-                    <p>Understanding event loops and how to avoid blocking your Discord bot's main thread during heavy processing.</p>
-                    <div class="post-tags">
-                        <span>#Python</span>
-                        <span>#Async</span>
-                    </div>
-                </div>
-            </a>
-
-        </div>
-
-        <div class="archive-footer">
-            <a href="#">End of Archive — Load Older Logs</a>
+        <div class="connect-box">
+            <span style="font-size: 11px; color: #333; letter-spacing: 5px; text-transform: uppercase;">Establish Connection</span>
+            <div class="social-row">
+                <a href="https://github.com/carbomint" class="s-link">GITHUB</a>
+                <a href="https://discord.com/users/920842715351113728" class="s-link">DISCORD</a>
+                <a href="https://x.com/carbomint" class="s-link">X_TWITTER</a>
+            </div>
         </div>
     </div>
-<style>
-    footer {
-        padding: 60px 20px;
-        text-align: center;
-        border-top: 1px solid rgba(255, 255, 255, 0.02);
-        margin-top: 100px;
-        background: rgba(10, 10, 12, 0.5);
-    }
 
-    .footer-links {
-        display: flex;
-        justify-content: center;
-        gap: 30px;
-        margin-bottom: 20px;
-    }
-
-    .footer-links a {
-        color: #555;
-        text-decoration: none;
-        font-size: 12px;
-        text-transform: uppercase;
-        letter-spacing: 2px;
-        transition: 0.3s;
-    }
-
-    .footer-links a:hover {
-        color: #fff;
-    }
-
-    .copyright {
-        font-size: 11px;
-        color: #333;
-        font-family: 'Fira Code', monospace;
-    }
-</style>
-
-<footer>
-    <div class="footer-links">
-        <a href="https://github.com/carbomint" target="_blank">GitHub</a>
-        <a href="https://discord.com/users/920842715351113728">Discord</a>
-        <a href="https://x.com/carbomint">Twitter - X</a>
-    </div>
-    <div class="copyright">
-        © 2024 CARBOMINT // SYSTEM_STATUS: OPERATIONAL
-    </div>
-</footer>
+    <footer>
+        <div style="font-size: 11px; color: #444;">© 2024 CARBOMINT // ARCHIVE_V1.0</div>
+        <div class="status">SYSTEM_STATUS: OPERATIONAL // DATA_ENCRYPTION: ACTIVE</div>
+    </footer>
 </body>
 </html>
