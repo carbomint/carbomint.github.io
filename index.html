@@ -3,122 +3,80 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>carbomint | Developer</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+    <title>carbomint | Terminal</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;800&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
     <style>
+        :root { --bg: #0a0a0c; --accent: #fff; --text-dim: #888; --border: rgba(255, 255, 255, 0.05); }
         * { margin: 0; padding: 0; box-sizing: border-box; }
-
         body {
-            background: linear-gradient(rgba(10, 10, 12, 0.85), rgba(10, 10, 12, 0.95)), 
+            background: linear-gradient(rgba(10, 10, 12, 0.8), rgba(10, 10, 12, 0.95)), 
                         url('https://i.pinimg.com/736x/d7/57/ff/d757ff47f222c04d880ae5f57d6507f2.jpg');
             background-size: cover; background-position: center; background-attachment: fixed;
-            color: #e0e0e6; font-family: 'Inter', sans-serif; overflow-x: hidden; line-height: 1.6;
+            color: #e0e0e6; font-family: 'Inter', sans-serif; height: 100vh; overflow: hidden;
         }
+        ::-webkit-scrollbar { width: 5px; }
+        ::-webkit-scrollbar-thumb { background: #333; border-radius: 10px; }
 
-        .blur-circle {
-            position: fixed; width: 500px; height: 500px; background: rgba(255, 255, 255, 0.03);
-            border-radius: 50%; filter: blur(100px); top: -100px; left: -100px; z-index: -1;
-        }
-
-        /* Navigation */
         nav {
             display: flex; justify-content: center; align-items: center; padding: 25px;
             background: rgba(10, 10, 12, 0.7); backdrop-filter: blur(20px);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.03); position: sticky; top: 0; z-index: 1000;
+            border-bottom: 1px solid var(--border); position: fixed; width: 100%; top: 0; z-index: 1000;
         }
-        .logo { position: absolute; left: 50px; font-weight: 700; letter-spacing: -1px; font-size: 1.1rem; color: #fff; }
+        .logo { position: absolute; left: 50px; font-weight: 800; letter-spacing: -1px; font-size: 1.1rem; color: #fff; }
         nav ul { display: flex; list-style: none; gap: 40px; }
-        nav a { 
-            color: #888; text-decoration: none; font-size: 13px; font-weight: 500; 
-            text-transform: uppercase; letter-spacing: 1px; transition: 0.3s; 
-        }
-        nav a:hover, nav a.active { color: #fff; }
+        nav a { color: var(--text-dim); text-decoration: none; font-size: 12px; font-weight: 500; text-transform: uppercase; letter-spacing: 2px; transition: 0.3s; }
+        nav a.active, nav a:hover { color: #fff; }
 
-        /* Hero */
         .hero {
-            display: flex; flex-direction: column; justify-content: center; align-items: center;
-            text-align: center; min-height: 90vh; padding: 40px 20px;
+            height: 100vh; display: flex; flex-direction: column;
+            justify-content: center; align-items: center; text-align: center; padding: 20px;
         }
-        .small-text { color: #444; font-size: 12px; letter-spacing: 5px; text-transform: uppercase; margin-bottom: 15px; }
-        .hero h1 { font-size: clamp(45px, 10vw, 100px); font-weight: 800; letter-spacing: -3px; color: #fff; margin-bottom: 10px; }
-        .description { color: #888; max-width: 550px; font-size: 1.05rem; margin-bottom: 45px; }
+        .hero span { font-family: 'Fira Code', monospace; font-size: 12px; color: #444; letter-spacing: 5px; text-transform: uppercase; margin-bottom: 15px; }
+        .hero h1 { font-size: clamp(3rem, 10vw, 6rem); font-weight: 800; letter-spacing: -4px; color: #fff; line-height: 1; margin-bottom: 20px; }
+        .hero p { color: var(--text-dim); max-width: 500px; font-size: 1rem; margin-bottom: 40px; line-height: 1.6; }
 
-        /* Projects */
-        .projects { padding: 100px 10%; max-width: 1200px; margin: 0 auto; }
-        .projects h2 { font-size: 2rem; margin-bottom: 60px; text-align: center; font-weight: 700; letter-spacing: -1px; }
-        .project-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 40px; }
-        .card { 
-            background: rgba(255, 255, 255, 0.02); border: 1px solid rgba(255, 255, 255, 0.05);
-            padding: 40px; border-radius: 4px; transition: 0.4s;
+        .btn-group { display: flex; gap: 15px; }
+        .btn {
+            padding: 14px 32px; border-radius: 4px; text-decoration: none;
+            font-family: 'Fira Code', monospace; font-size: 12px; font-weight: 600; transition: 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
         }
-        .card:hover { background: rgba(255, 255, 255, 0.04); border-color: rgba(255, 255, 255, 0.2); }
-        .tag { font-size: 11px; color: #444; font-weight: 700; text-transform: uppercase; margin-bottom: 15px; display: block; }
-        .card h3 { font-size: 1.4rem; margin-bottom: 15px; color: #fff; }
-        .card p { color: #777; font-size: 14px; margin-bottom: 30px; }
+        .btn-p { background: #fff; color: #000; }
+        .btn-s { background: rgba(255,255,255,0.03); color: #fff; border: 1px solid var(--border); }
+        .btn:hover { transform: translateY(-5px); box-shadow: 0 15px 30px rgba(0,0,0,0.5); background: #eee; color: #000; }
 
-        /* Repository Link (No more blue) */
-        .repo-button {
-            font-family: 'Fira Code', monospace; font-size: 11px; color: #fff;
-            text-decoration: none; text-transform: uppercase; letter-spacing: 1px;
-            padding: 10px 0; border-bottom: 1px solid #222; transition: 0.3s;
+        footer {
+            position: fixed; bottom: 0; width: 100%; padding: 30px 50px;
+            display: flex; justify-content: space-between; align-items: center;
+            background: linear-gradient(transparent, rgba(10,10,12,0.9));
         }
-        .repo-button:hover { border-color: #fff; color: #fff; }
-
-        /* Footer */
-        footer { padding: 60px 20px; text-align: center; background: rgba(10, 10, 12, 0.5); margin-top: 100px; border-top: 1px solid rgba(255,255,255,0.02); }
-        .footer-links { display: flex; justify-content: center; gap: 30px; margin-bottom: 20px; }
-        .footer-links a { color: #555; text-decoration: none; font-size: 12px; text-transform: uppercase; letter-spacing: 2px; transition: 0.3s; }
-        .footer-links a:hover { color: #fff; }
-        .copyright { font-size: 11px; color: #333; font-family: 'Fira Code', monospace; }
-
-        @media (max-width: 768px) {
-            .logo { position: static; margin-bottom: 20px; }
-            nav { flex-direction: column; padding: 20px; }
-        }
+        .status { font-family: 'Fira Code', monospace; font-size: 10px; color: #333; display: flex; align-items: center; gap: 8px; }
+        .dot { width: 6px; height: 6px; background: #00ff88; border-radius: 50%; box-shadow: 0 0 10px #00ff88; animation: pulse 2s infinite; }
+        @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
     </style>
 </head>
 <body>
-    <div class="blur-circle"></div>
     <nav>
         <div class="logo">carbomint</div>
         <ul>
-            <li><a class="active" href="index.html">Home</a></li>
+            <li><a href="index.html" class="active">Home</a></li>
             <li><a href="portfolio.html">Portfolio</a></li>
             <li><a href="posts.html">Posts</a></li>
         </ul>
     </nav>
 
-    <section class="hero">
-        <p class="small-text">Discord Bot Developer</p>
+    <div class="hero">
+        <span>ESTABLISHED_2024</span>
         <h1>carbomint</h1>
-        <p class="description">Backend-focused programmer creating Discord bots, automation systems, and scalable utilities.</p>
-    </section>
-
-    <section class="projects">
-        <h2>Projects</h2>
-        <div class="project-grid">
-            <div class="card">
-                <span class="tag">Discord Bot</span>
-                <h3>Niveus</h3>
-                <p>Multi-functional Discord bot focused on supervision, moderation, and music systems.</p>
-                <a class="repo-button" href="https://github.com/carbomint" target="_blank">View Repository →</a>
-            </div>
-            <div class="card">
-                <span class="tag">Web Development</span>
-                <h3>Web Projects</h3>
-                <p>Developing minimalist frontend experiences with a focus on typography and performance.</p>
-                <a class="repo-button" href="https://github.com/carbomint" target="_blank">View Archive →</a>
-            </div>
+        <p>Discord bot developer and backend enthusiast. Specializing in Python, automation systems, and scalable moderation utilities.</p>
+        <div class="btn-group">
+            <a href="portfolio.html" class="btn btn-p">INITIALIZE_PORTFOLIO</a>
+            <a href="https://github.com/carbomint" class="btn btn-s">GITHUB_ARCHIVE</a>
         </div>
-    </section>
+    </div>
 
     <footer>
-        <div class="footer-links">
-            <a href="https://github.com/carbomint" target="_blank">GitHub</a>
-            <a href="https://discord.com/users/920842715351113728" target="_blank">Discord</a>
-            <a href="https://x.com/carbomint" target="_blank">Twitter</a>
-        </div>
-        <div class="copyright">© 2024 CARBOMINT // SYSTEM_STATUS: OPERATIONAL</div>
+        <div style="font-size: 10px; color: #444; letter-spacing: 1px;">© 2024 ALL_RIGHTS_RESERVED</div>
+        <div class="status"><div class="dot"></div>SYSTEM_STATUS: OPERATIONAL</div>
     </footer>
 </body>
 </html>
