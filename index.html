@@ -21,29 +21,48 @@
         }
 
         nav{
-            display:flex;
-            justify-content:space-between;
-            align-items:center;
-            padding:20px 60px;
-            background:#111;
-            position:sticky;
-            top:0;
-        }
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    gap:40px;
 
-        nav h1{
-            color:#4da6ff;
-        }
+    padding:18px;
 
-        nav ul{
-            display:flex;
-            list-style:none;
-            gap:20px;
-        }
+    background:#1b1b2b;
 
-        nav a{
-            color:white;
-            text-decoration:none;
-        }
+    border-bottom:1px solid #2a2a3d;
+}
+
+.logo{
+    position:absolute;
+    left:30px;
+
+    color:white;
+    font-weight:bold;
+}
+
+nav ul{
+    display:flex;
+    list-style:none;
+    gap:35px;
+}
+
+nav a{
+    color:#bdbdc7;
+    text-decoration:none;
+
+    transition:0.2s;
+    padding-bottom:6px;
+}
+
+nav a:hover{
+    color:white;
+}
+
+nav a.active{
+    color:white;
+    border-bottom:2px solid #ff4d6d;
+}
 
         .hero{
             height:90vh;
@@ -117,15 +136,19 @@
 
 <body>
 
-    <nav>
-        <h1>carbomint</h1>
+   <nav>
 
-        <ul>
-            <li><a href="#">Home</a></li>
-            <li><a href="#">Projects</a></li>
-            <li><a href="#">Contact</a></li>
-        </ul>
-    </nav>
+    <div class="logo">
+        carbomint
+    </div>
+
+    <ul>
+        <li><a class="active" href="#">Home</a></li>
+        <li><a href="#">Portfolio</a></li>
+        <li><a href="#">Posts</a></li>
+    </ul>
+
+</nav>
 
     <section class="hero">
 
