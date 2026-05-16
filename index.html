@@ -149,7 +149,19 @@ nav a.active{
 
     font-size:18px;
 }
+.description::after{
+    content:"";
 
+    display:block;
+
+    width:120px;
+
+    height:2px;
+
+    background:rgba(255,255,255,0.12);
+
+    margin:35px auto 0 auto;
+}
 .hero-buttons{
     margin-top:35px;
 
@@ -177,7 +189,9 @@ nav a.active{
 .hero-buttons a:hover{
     background:#2d2d45;
 }
-
+.projects{
+    position:relative;
+}
         .projects{
             padding:100px 80px;
         }
@@ -190,19 +204,23 @@ nav a.active{
     color:#ffffff;
 }
 
-        .project-grid{
-            display:grid;
-            grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-            gap:20px;
-        }
+       .project-grid{
+    display:grid;
 
+    grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
+
+    gap:28px;
+}
         .card{
     background:rgba(20,20,30,0.55);
 
     border:1px solid rgba(255,255,255,0.08);
 
     backdrop-filter:blur(12px);
-
+            
+box-shadow:
+0 0 20px rgba(0,0,0,0.18);
+            
     padding:25px;
 
     border-radius:18px;
