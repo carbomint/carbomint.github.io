@@ -4,63 +4,38 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Portfolio | carbomint</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
     <style>
-        /* CSS stays consistent with index.html */
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body {
-            background: linear-gradient(rgba(10, 10, 12, 0.9), rgba(10, 10, 12, 0.98)), 
-                        url('https://i.pinimg.com/736x/d7/57/ff/d757ff47f222c04d880ae5f57d6507f2.jpg');
-            background-size: cover; background-position: center; background-attachment: fixed;
-            color: #e0e0e6; font-family: 'Inter', sans-serif;
-        }
-        nav {
-            display: flex; justify-content: center; padding: 25px;
-            background: rgba(10, 10, 12, 0.7); backdrop-filter: blur(20px);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.03); position: sticky; top: 0; z-index: 1000;
-        }
-        nav ul { display: flex; list-style: none; gap: 40px; }
-        nav a { color: #888; text-decoration: none; font-size: 13px; text-transform: uppercase; letter-spacing: 1px; transition: 0.3s; }
-        nav a:hover, nav a.active { color: #fff; }
-
-        .container { max-width: 1000px; margin: 0 auto; padding: 80px 20px; }
-        h1 { font-size: 2.5rem; font-weight: 800; color: #fff; margin-bottom: 60px; letter-spacing: -1.5px; }
-
-        .project-card {
-            background: rgba(255, 255, 255, 0.02); border: 1px solid rgba(255, 255, 255, 0.05);
-            padding: 40px; border-radius: 4px; margin-bottom: 30px; display: flex; flex-direction: column; gap: 15px;
-        }
-        .project-card h2 { color: #fff; font-size: 1.5rem; }
-        .project-card p { color: #777; font-size: 1rem; max-width: 700px; }
-        .tech-stack { display: flex; gap: 15px; margin-top: 10px; }
-        .tech-stack span { font-family: 'Fira Code', monospace; font-size: 11px; color: #444; text-transform: uppercase; }
-        
-        .repo-link { color: #fff; text-decoration: none; font-size: 12px; font-family: 'Fira Code', monospace; margin-top: 20px; border-bottom: 1px solid #222; width: fit-content; padding-bottom: 4px; transition: 0.3s; }
-        .repo-link:hover { border-color: #fff; }
-
-        footer { padding: 60px; text-align: center; border-top: 1px solid rgba(255,255,255,0.02); margin-top: 100px; }
-        .copyright { font-size: 11px; color: #333; font-family: 'Fira Code', monospace; }
+        /* (Insert the same CSS block from index.html here for consistency) */
+        /* Additional style for detailed view: */
+        .container { max-width: 1000px; margin: 0 auto; padding: 100px 20px; }
+        .page-title { font-size: 3rem; color: #fff; margin-bottom: 60px; letter-spacing: -2px; }
+        .tech-list { display: flex; gap: 15px; margin-top: 15px; }
+        .tech-item { font-family: 'Fira Code', monospace; font-size: 11px; color: #555; background: rgba(255,255,255,0.03); padding: 4px 8px; border-radius: 4px; }
     </style>
 </head>
 <body>
     <nav>
         <ul>
             <li><a href="index.html">Home</a></li>
-            <li><a href="portfolio.html" class="active">Portfolio</a></li>
+            <li><a class="active" href="portfolio.html">Portfolio</a></li>
             <li><a href="posts.html">Posts</a></li>
         </ul>
     </nav>
     <div class="container">
-        <h1>Selected Works</h1>
-        <div class="project-card">
-            <h2>Niveus Bot</h2>
-            <p>A comprehensive Discord solution designed for server management, featuring automated moderation and custom data logging.</p>
-            <div class="tech-stack"><span>Python</span><span>PostgreSQL</span><span>Discord.py</span></div>
-            <a href="#" class="repo-link">ACCESS_SOURCE_CODE</a>
+        <h1 class="page-title">Selected Works</h1>
+        <div class="card" style="margin-bottom: 30px;">
+            <span class="tag">Discord.py / Postgres</span>
+            <h3>Niveus Bot</h3>
+            <p>Developing high-performance automation for Discord communities. Optimized for large-scale moderation and user interaction logging.</p>
+            <div class="tech-list">
+                <span class="tech-item">Python</span>
+                <span class="tech-item">Postgres</span>
+                <span class="tech-item">Asyncio</span>
+            </div>
+            <br>
+            <a href="#" class="repo-link">ACCESS_SOURCE</a>
         </div>
     </div>
-    <footer>
-        <div class="copyright">© 2024 CARBOMINT // PORTFOLIO_V1</div>
-    </footer>
 </body>
 </html>
