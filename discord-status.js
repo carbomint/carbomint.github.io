@@ -1,7 +1,6 @@
 class DiscordStatus {
     constructor(config) {
         this.config = config;
-        this.statusCard = document.getElementById('discordCard');
         this.loading = document.getElementById('discordLoading');
         this.content = document.getElementById('discordContent');
         this.error = document.getElementById('discordError');
@@ -10,6 +9,7 @@ class DiscordStatus {
 
     async init() {
         if (!this.config?.userId) {
+            console.error('No Discord user ID configured');
             this.showError();
             return;
         }
@@ -20,12 +20,23 @@ class DiscordStatus {
 
     async fetchStatus() {
         try {
-            const response = await fetch(this.config.apiEndpoint);
-            if (!response.ok) throw new Error('Failed to fetch');
+            console.log('Fetching Discord status from:', this.config.apiEndpoint);
+            const response = await fetch(this.config.apiEndpoint, {
+                method: 'GET',
+                headers: {
+                    'Accept': 'application/json'
+                }
+            });
             
+            console.log('Response status:', response.status);
             const data = await response.json();
-            if (data.success) {
+            console.log('Response data:', data);
+            
+            if (data.success && data.data) {
                 this.displayStatus(data.data);
+            } else {
+                console.error('API returned success: false or no data');
+                this.showError();
             }
         } catch (err) {
             console.error('Discord status fetch error:', err);
@@ -34,6 +45,8 @@ class DiscordStatus {
     }
 
     displayStatus(userData) {
+        console.log('Displaying status for:', userData.username);
+        
         // Hide loading, show content
         this.loading.style.display = 'none';
         this.error.style.display = 'none';
@@ -41,13 +54,13 @@ class DiscordStatus {
 
         // Avatar
         const avatar = document.getElementById('discordAvatar');
-        const userId = this.config.userId;
-        const discriminator = userData.discriminator || '0';
-        avatar.src = `https://cdn.discordapp.com/avatars/${userId}/${userData.avatar}.png?size=128`;
-        avatar.alt = userData.username;
+        if (userData.avatar) {
+            avatar.src = `https://cdn.discordapp.com/avatars/${this.config.userId}/${userData.avatar}.png?size=128`;
+        }
+        avatar.alt = userData.username || 'Discord User';
 
         // Username
-        document.getElementById('discordName').textContent = userData.username || 'Unknown';
+        document.getElementById('discordName').textContent = userData.username || userData.display_name || 'Unknown';
 
         // Status
         const status = userData.discord_status || 'offline';
@@ -69,9 +82,14 @@ class DiscordStatus {
         const activityText = document.getElementById('discordActivityText');
         
         if (userData.activities && userData.activities.length > 0) {
-            const activity = userData.activities[0];
-            activityText.textContent = activity.name || 'Unknown activity';
-            activityElement.style.display = 'block';
+            // Filter out custom status (type 4)
+            const activity = userData.activities.find(a => a.type !== 4);
+            if (activity) {
+                activityText.textContent = activity.name || 'Unknown activity';
+                activityElement.style.display = 'block';
+            } else {
+                activityElement.style.display = 'none';
+            }
         } else {
             activityElement.style.display = 'none';
         }
@@ -99,8 +117,16 @@ class DiscordStatus {
 // Initialize when DOM is ready
 if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', () => {
-        new DiscordStatus(DISCORD_CONFIG);
+        if (typeof DISCORD_CONFIG !== 'undefined') {
+            new DiscordStatus(DISCORD_CONFIG);
+        } else {
+            console.error('DISCORD_CONFIG not defined');
+        }
     });
 } else {
-    new DiscordStatus(DISCORD_CONFIG);
+    if (typeof DISCORD_CONFIG !== 'undefined') {
+        new DiscordStatus(DISCORD_CONFIG);
+    } else {
+        console.error('DISCORD_CONFIG not defined');
+    }
 }
