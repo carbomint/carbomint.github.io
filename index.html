@@ -50,15 +50,23 @@ background-attachment:fixed;
     display:flex;
     justify-content:center;
     align-items:center;
+
     gap:40px;
 
     padding:18px;
 
-    background:#1b1b2b;
+    background:rgba(15,15,25,0.55);
 
-    border-bottom:1px solid #2a2a3d;
+    backdrop-filter:blur(10px);
+
+    border-bottom:1px solid rgba(255,255,255,0.06);
+
+    position:sticky;
+
+    top:0;
+
+    z-index:1000;
 }
-
 .logo{
     position:absolute;
     left:30px;
@@ -286,7 +294,7 @@ nav a.active{
 </head>
 
 <body>
-
+<div class="blur-circle"></div>
    <nav>
 
     <div class="logo">
@@ -298,7 +306,6 @@ nav a.active{
         <li><a href="#">Portfolio</a></li>
         <li><a href="#">Posts</a></li>
     </ul>
-<div class="blur-circle"></div>
 </nav>
 
     <section class="hero">
