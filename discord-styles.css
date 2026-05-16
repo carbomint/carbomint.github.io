@@ -1,10 +1,12 @@
-/* Discord Status Card Styles */
+/* Discord Status Card Styles - Matches portfolio aesthetic */
 .status-card {
     background: rgba(255, 255, 255, 0.02);
     border: 1px solid rgba(255, 255, 255, 0.05);
     padding: 40px;
     border-radius: 4px;
     transition: 0.4s;
+    display: flex;
+    flex-direction: column;
 }
 
 .status-card:hover {
@@ -12,35 +14,41 @@
     border-color: rgba(255, 255, 255, 0.2);
 }
 
+/* Header */
 .status-card-label {
     font-size: 11px;
     color: #444;
     font-weight: 700;
     text-transform: uppercase;
-    margin-bottom: 25px;
+    letter-spacing: 1px;
+    margin-bottom: 30px;
     display: flex;
     align-items: center;
     gap: 8px;
 }
 
 .status-card-label svg {
-    color: #5b65ea;
+    color: inherit;
+    opacity: 0.7;
 }
 
 /* Loading State */
 .discord-loading {
     display: flex;
     align-items: center;
+    justify-content: center;
     gap: 12px;
     color: #777;
-    font-size: 14px;
+    font-size: 13px;
+    padding: 40px 0;
+    font-family: 'Fira Code', monospace;
 }
 
 .status-spinner {
-    width: 16px;
-    height: 16px;
+    width: 14px;
+    height: 14px;
     border: 2px solid rgba(255, 255, 255, 0.1);
-    border-top-color: #5b65ea;
+    border-top-color: rgba(255, 255, 255, 0.3);
     border-radius: 50%;
     animation: spin 0.8s linear infinite;
 }
@@ -54,37 +62,41 @@
     display: none;
 }
 
+/* User Section */
 .discord-user {
     display: flex;
     align-items: center;
     gap: 16px;
-    margin-bottom: 20px;
+    margin-bottom: 25px;
 }
 
 .discord-avatar {
-    width: 48px;
-    height: 48px;
-    border-radius: 50%;
-    border: 2px solid rgba(255, 255, 255, 0.1);
+    width: 56px;
+    height: 56px;
+    border-radius: 4px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    flex-shrink: 0;
 }
 
 .discord-info {
     display: flex;
     flex-direction: column;
-    gap: 4px;
+    gap: 6px;
+    min-width: 0;
 }
 
 .discord-name {
     color: #fff;
     font-weight: 600;
-    font-size: 16px;
+    font-size: 15px;
+    font-family: 'Inter', sans-serif;
 }
 
 .discord-status-row {
     display: flex;
     align-items: center;
     gap: 8px;
-    font-size: 13px;
+    font-size: 12px;
 }
 
 .discord-dot {
@@ -93,50 +105,65 @@
     height: 8px;
     border-radius: 50%;
     background: #747f8d;
+    flex-shrink: 0;
 }
 
 .discord-status-text {
     color: #777;
     text-transform: capitalize;
+    font-family: 'Fira Code', monospace;
+    font-size: 11px;
+    letter-spacing: 0.5px;
 }
 
 /* Activity Display */
 .discord-activity {
     display: none;
-    padding-top: 16px;
-    border-top: 1px solid rgba(255, 255, 255, 0.05);
-    margin-top: 16px;
-    font-size: 13px;
+    padding-top: 20px;
+    border-top: 1px solid rgba(255, 255, 255, 0.03);
+    margin-top: 20px;
 }
 
 .activity-label {
     display: block;
     color: #444;
-    font-size: 11px;
+    font-size: 10px;
     text-transform: uppercase;
-    margin-bottom: 8px;
+    letter-spacing: 1px;
+    margin-bottom: 10px;
+    font-family: 'Fira Code', monospace;
+    font-weight: 600;
 }
 
 .activity-text {
     color: #888;
-    font-style: italic;
+    font-size: 13px;
+    font-family: 'Inter', sans-serif;
 }
 
 /* Custom Status */
 .discord-custom-status {
     display: none;
-    padding-top: 12px;
+    padding-top: 16px;
     font-size: 13px;
     color: #888;
+    border-top: 1px solid rgba(255, 255, 255, 0.03);
+    font-style: italic;
 }
 
 /* Error State */
 .discord-error {
     display: none;
-    color: #f04747;
-    font-size: 13px;
+    color: #888;
+    font-size: 12px;
     text-align: center;
-    padding: 20px 0;
+    padding: 30px 0;
+    font-family: 'Fira Code', monospace;
+}
+
+.discord-error span::before {
+    content: '> ';
+    color: #444;
 }
 
 /* Responsive */
@@ -146,11 +173,15 @@
     }
     
     .discord-avatar {
-        width: 40px;
-        height: 40px;
+        width: 48px;
+        height: 48px;
     }
     
     .discord-name {
         font-size: 14px;
+    }
+    
+    .discord-loading {
+        padding: 30px 0;
     }
 }
