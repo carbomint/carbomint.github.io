@@ -65,6 +65,39 @@
     <div class="container">
         <h1>Selected Works</h1>
         <div class="project-card">
+            <h2>Niveus AI</h2>
+            <p>An AI-powered Discord bot that integrates large language model capabilities directly into Discord servers. Built to handle natural language queries, context-aware conversations, and automated responses — all within the Discord interface.</p>
+            <div class="tech-stack">
+                <span>Python</span>
+                <span>Discord.py</span>
+                <span>OpenAI API</span>
+                <span>AsyncIO</span>
+            </div>
+            <div class="code-snippet">
+<span class="keyword">import</span> discord<br>
+<span class="keyword">import</span> openai<br>
+<span class="keyword">import</span> asyncio<br>
+<span class="keyword">import</span> os<br>
+<span class="keyword">from</span> dotenv <span class="keyword">import</span> load_dotenv<br>
+load_dotenv()<br><br>
+openai.api_key = os.getenv(<span class="string">"OPENAI_API_KEY"</span>)<br>
+<span class="comment"># Context-aware conversation handler</span><br>
+conversation_history = {}<br><br>
+<span class="keyword">async def</span> <span class="function">ask_ai</span>(user_id, prompt):<br>
+&nbsp;&nbsp;&nbsp;&nbsp;history = conversation_history.get(user_id, [])<br>
+&nbsp;&nbsp;&nbsp;&nbsp;history.append({<span class="string">"role"</span>: <span class="string">"user"</span>, <span class="string">"content"</span>: prompt})<br>
+&nbsp;&nbsp;&nbsp;&nbsp;response = <span class="keyword">await</span> openai.ChatCompletion.acreate(<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;model=<span class="string">"gpt-4"</span>, messages=history<br>
+&nbsp;&nbsp;&nbsp;&nbsp;)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;reply = response.choices[<span class="string">0</span>].message.content<br>
+&nbsp;&nbsp;&nbsp;&nbsp;history.append({<span class="string">"role"</span>: <span class="string">"assistant"</span>, <span class="string">"content"</span>: reply})<br>
+&nbsp;&nbsp;&nbsp;&nbsp;conversation_history[user_id] = history<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">return</span> reply<br>
+/ ◈— ◜More codes below◞ —◈
+            </div>
+        </div>
+
+        <div class="project-card">
             <h2>Niveus Bot</h2>
             <p>A comprehensive Discord solution designed for server management, featuring automated moderation and custom data logging.</p>
             <div class="tech-stack"><span>Python</span><span>PostgreSQL</span><span>Discord.py</span></div>
