@@ -121,6 +121,26 @@ tree = app_commands.CommandTree(client)
 / ◈— ◜More codes below◞ —◈
             </div>
         </div>
+        <div class="project-card">
+            <h2>Web Development</h2>
+            <p>Building this portfolio site and other minimalist web experiences focused on clean typography and performance.</p>
+            <div class="tech-stack"><span>HTML</span><span>CSS</span><span>JavaScript</span></div>
+            <div class="code-snippet">
+<span class="comment">/* discord-styles.css */</span><br>
+<span class="function">.status-card</span> {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;background: <span class="string">rgba(255,255,255,0.02)</span>;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;border: <span class="string">1px solid rgba(255,255,255,0.05)</span>;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;border-radius: <span class="string">4px</span>; padding: <span class="string">30px</span>;<br>
+}<br><br>
+<span class="comment">// idk.js — fetch live Discord presence</span><br>
+<span class="keyword">async function</span> <span class="function">loadDiscord</span>() {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">const</span> res = <span class="keyword">await</span> fetch(<span class="string">`https://api.lanyard.rest/v1/users/${CFG.identity.discord}`</span>)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">const</span> { data } = <span class="keyword">await</span> res.json()<br>
+&nbsp;&nbsp;&nbsp;&nbsp;renderStatus(data)<br>
+}<br>
+/ ◈— ◜More codes below◞ —◈
+            </div>
+        </div>
     </div>
      <footer>
         <div class="footer-links">
